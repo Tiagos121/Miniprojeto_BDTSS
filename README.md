@@ -13,10 +13,10 @@
 
 <h2>⚙️ Tecnologias Utilizadas</h2>
 <ul>
-  <li>PHP 8.x</li>
+  <li>PHP</li>
   <li>MySQL</li>
-  <li>HTML5 / CSS3 (básico)</li>
-  <li>Apache (via XAMPP, WAMP ou similar)</li>
+  <li>HTML / CSS / JAVASCRIPT</li>
+  <li>Apache e MySQL (Via XAMPP)</li>
 </ul>
 
 
