@@ -33,9 +33,10 @@ $link = new_db_connection();
                     echo "<h3>";
                     echo "<a href='generos.php?id=$id_generos'>$tipo</a>";
 
-                    // Só se for admin é que aparece o "x"
+                    // Só se for admin é que aparece o "editar" e o "x"
                     if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
-                        echo " <a href='scripts/generos/sc_delete_genero.php?id=$id_generos' class='text-danger' onclick=\"return confirm('Tens a certeza que queres apagar este género?');\">x</a>";
+                        echo " <a href='update_genero.php?id=$id_generos' class='text-danger' >(editar)</a>";
+                        echo " <a href='scripts/generos/sc_delete_genero.php?id=$id_generos'  class='text-dark' onclick=\"return confirm('Tens a certeza que queres apagar este género?');\">(x)</a>";
                     }
 
                     echo "</h3>";
