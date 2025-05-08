@@ -1,9 +1,14 @@
 <?php
 require_once "./connections/connections.php";
+require_once "./scripts/sc_error_feedback.php";
+
 $link = new_db_connection();
 ?>
 
 <?php
+if (isset($_GET["msg"])) {
+    error_feedbsck($_GET["msg"]);
+}
 if (isset($_GET["id"])) {
     $id_genero = $_GET["id"];
 
@@ -52,4 +57,3 @@ if (isset($_GET["id"])) {
         </div>
     </div>
 </section>
-

@@ -77,20 +77,6 @@ $link = new_db_connection();
                 case "editado_sucesso":
                     echo "<div class='alert alert-success'>Género atualizado com sucesso!</div>";
                     break;
-                case "erro_tamanho":
-                    echo "<p class='text-warning mt-4 mb-0'>Erro: o nome do género tem de ter pelo menos 3 caracteres.</p>";
-                    break;
-                case "erro_query":
-                    echo "<div class='alert alert-danger'>Erro ao atualizar o género na base de dados.</div>";
-                    break;
-                case "erro_prepare":
-                    echo "<div class='alert alert-danger'>Erro ao preparar a query.</div>";
-                    break;
-                case "erro_dados":
-                    echo "<div class='alert alert-danger'>Erro: dados em falta no pedido.</div>";
-                    break;
-                default:
-                    echo "<div class='alert alert-info'>Mensagem não reconhecida.</div>";
             }
         }
 

@@ -9,7 +9,7 @@ if (isset($_POST["id_genero"], $_POST["genero"])) {
     $tipo = trim($_POST["genero"]);
 
     if (strlen($tipo) < 3) {
-        header("Location: ../../update_genero.php?id=$id&msg=erro_tamanho");
+        header("Location: ../../update_genero.php?id=$id&msg=33");
         exit();
     }
 
