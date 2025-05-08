@@ -22,11 +22,20 @@ function error_feedbsck($code) {
         case "7":
             echo "<p class='text-warning mt-4 mb-0'>&#9888; O género deve ter no mínimo 3 caracteres. &#9888;</p>";
             break;
-        case "33":
-            echo "ss";
-        break;
         case "editado_sucesso":
             echo "<div class='alert alert-success'>Género atualizado com sucesso!</div>";
+            break;
+        case "erro_tamanho":
+            echo "<div class='alert alert-warning'>Erro: o nome do género tem de ter pelo menos 3 caracteres.</div>";
+            break;
+        case "erro_query":
+            echo "<div class='alert alert-danger'>Erro ao atualizar o género na base de dados.</div>";
+            break;
+        case "erro_prepare":
+            echo "<div class='alert alert-danger'>Erro ao preparar a query.</div>";
+            break;
+        case "erro_dados":
+            echo "<div class='alert alert-danger'>Erro: dados em falta no pedido.</div>";
             break;
     }
 }
