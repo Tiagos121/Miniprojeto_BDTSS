@@ -1,5 +1,4 @@
 <?php
-// Conexão à base de dados
 require_once "./connections/connections.php";
 $link = new_db_connection();
 ?>
@@ -20,6 +19,7 @@ if (isset($_GET["id"])) {
                 header("Location: generos.php");
                 exit();
             }
+
             $_SESSION["id_genero"] = $id_genero;
 
         } else {
