@@ -39,6 +39,33 @@ function error_feedback($code) {
         case "erro_dados":
             echo "<div class='alert alert-danger mt-3'>Erro: dados em falta no pedido.</div>";
             break;
+        case "registo_sucesso":
+            echo "<script>alert('Registo efetuado com sucesso!');</script>";
+            break;
+        case "utilizador_existente":
+            echo "<div class='alert alert-warning'>Já existe um utilizador com esse login ou email.</div>";
+            break;
+        case "registo_incompleto":
+            echo "<p class='alert alert-warning mt-3'>Não foi possível terminar o registo. Verifica os teus dados e volta a tentar.</p>";
+            break;
+        case "erro_prepare":
+            echo "<p class='alert alert-warning mt-3'>Erro ao preparar o pedido. Tenta novamente mais tarde.</p>";
+            break;
+        case "login_errado":
+            echo "<p class='alert alert-warning mt-3'>Os dados de acesso não estão corretos. Volta a tentar.</p>";
+            break;
+        case "user_inexistente":
+            echo "<p class='alert alert-warning mt-3'>O Utilizador que inseriu não existe!</p>";
+            break;
+        case "falha_executar_login":
+            echo "<p class='alert alert-danger mt-3'>Erro na execução. Tenta novamente mais tarde.</p>";
+            break;
+        case "erro_sistema_login":
+            echo "<p class='alert alert-danger mt-3'>Erro no sistema. Tenta novamente mais tarde.</p>";
+            break;
+        case "login_incompleto":
+            echo "<p class='alert alert-warning mt-3'>Preenche todos os campos antes de continuar.</p>";
+            break;
         default:
             echo "<div class='alert alert-info mt-3'>Ocorreu uma mensagem não reconhecida.</div>";
     }

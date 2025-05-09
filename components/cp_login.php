@@ -13,20 +13,10 @@
         </div>
 
         <?php
+        // Mostrar feedback AQUI
+        require_once "scripts/sc_error_feedback.php";
         if (isset($_GET["msg"])) {
-            switch ($_GET["msg"]) {
-                case 2:
-                case 3:
-                    echo "<p class='text-danger'>Os dados de acesso não estão corretos. Volta a tentar.</p>";
-                    break;
-                case 4:
-                case 5:
-                    echo "<p class='text-danger'>Erro no sistema. Tenta novamente mais tarde.</p>";
-                    break;
-                case 6:
-                    echo "<p class='text-danger'>Preenche todos os campos antes de continuar.</p>";
-                    break;
-            }
+            error_feedback($_GET["msg"]);
         }
         ?>
 

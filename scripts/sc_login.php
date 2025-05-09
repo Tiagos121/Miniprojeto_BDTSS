@@ -28,26 +28,26 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                     header("Location: ../index.php?msg=1"); // sucesso
                     exit();
                 } else {
-                    header("Location: ../login.php?msg=2"); // password errada
+                    header("Location: ../login.php?msg=login_errado"); // dados errados
                     exit();
                 }
             } else {
-                header("Location: ../login.php?msg=3"); // username não existe
+                header("Location: ../login.php?msg=user_inexistente"); // username não existe
                 exit();
             }
         } else {
-            header("Location: ../login.php?msg=4"); // erro na execução
+            header("Location: ../login.php?msg=falha_executar_login"); // erro na execução
             exit();
         }
     } else {
-        header("Location: ../login.php?msg=5"); // erro na preparação
+        header("Location: ../login.php?msg=erro_sistema_login"); // erro na preparação
         exit();
     }
 
     mysqli_stmt_close($stmt);
     mysqli_close($link);
 } else {
-    header("Location: ../login.php?msg=6"); // campos em falta
+    header("Location: ../login.php?msg=login_incompleto"); // campos em falta
     exit();
 }
 ?>

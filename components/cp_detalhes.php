@@ -51,9 +51,12 @@
                         </div> 
                         <a class='d-block btn btn-primary mt-4' href='{url_trailer}' target='_blank'>Trailer</a> 
                         <a class='d-block btn btn-outline-primary mt-4' href='{url_imdb}' target='_blank'>IMDb</a>
-                        <a class='d-block btn btn-primary mt-4' href='{url_favorito}' target='_blank'>Remover Favorito</a>
-                        
-                    </div> 
+                        ";
+                if (isset($_SESSION['role'])) {
+                    echo "<a class='d-block btn btn-primary mt-4' href='{url_favorito}' target='_blank'>Remover Favorito</a>";
+                }
+
+                    echo "</div> 
                 </div>";
             }
             }

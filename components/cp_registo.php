@@ -12,18 +12,10 @@
             </div>
 
             <?php
+            // Mostrar feedback AQUI
+            require_once "scripts/sc_error_feedback.php";
             if (isset($_GET["msg"])) {
-                switch ($_GET["msg"]) {
-                    case 1:
-                        echo "<script>alert('Registo efetuado com sucesso!');</script>";
-                        break;
-                    case 2:
-                        echo "<p class='text-danger'>Não foi possível terminar o registo. Verifica os teus dados e volta a tentar.</p>";
-                        break;
-                    case 3:
-                        echo "<p class='text-danger'>Erro ao preparar o pedido. Tenta novamente mais tarde.</p>";
-                        break;
-                }
+                error_feedback($_GET["msg"]);
             }
             ?>
 

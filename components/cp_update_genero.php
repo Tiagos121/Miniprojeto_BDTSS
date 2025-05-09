@@ -1,7 +1,5 @@
 <?php
 require_once "./connections/connections.php";
-require_once "./scripts/sc_error_feedback.php";
-
 $link = new_db_connection();
 ?>
 
