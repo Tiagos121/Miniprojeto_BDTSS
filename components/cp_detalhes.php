@@ -55,10 +55,28 @@
                         <a class='d-block btn btn-primary mt-4' href='{url_trailer}' target='_blank'>Trailer</a> 
                         <a class='d-block btn btn-outline-primary mt-4' href='{url_imdb}' target='_blank'>IMDb</a>
                         ";
+                    // Código para favoritos
                     if (isset($_SESSION["id"])) {
-                        echo "<a class='d-block btn btn-primary mt-4' href='{url_favorito}' target='_blank'>Remover Favorito</a>";
-                    }
+                        $id_user = $_SESSION["id"];
 
+                        $stmt_fav = mysqli_stmt_init($link);
+                        $query_fav = "SELECT COUNT(*) FROM filmes_favoritos WHERE ref_utilizadores = ? AND ref_filmes = ?";
+
+                        if (mysqli_stmt_prepare($stmt_fav, $query_fav)) {
+                            mysqli_stmt_bind_param($stmt_fav, "ii", $id_user, $id_filme);
+                            mysqli_stmt_execute($stmt_fav);
+                            mysqli_stmt_bind_result($stmt_fav, $is_favorite);
+                            mysqli_stmt_fetch($stmt_fav);
+                            mysqli_stmt_close($stmt_fav);
+
+                            if ($is_favorite > 0) {
+                                echo "<a class='btn btn-danger mt-4' href='scripts/favoritos/sc_delete_favorito.php?id=$id_filme'>Remover Favorito</a>";
+                            } else {
+                                echo "<a class='btn btn-success mt-4' href='scripts/favoritos/sc_add_favorito.php?id=$id_filme'>Adicionar aos Favoritos</a>";
+                            }
+                        }
+                    }
+                    // Fim do código favoritos
                     echo "</div> 
                 </div>";
             }
