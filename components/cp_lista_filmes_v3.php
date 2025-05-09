@@ -9,16 +9,11 @@
         <!-- Intro -->
         <?php
         include_once "./components/cp_intro_filmes.php";
-        $link = new_db_connection();
         ?>
         <!-- Listar filmes -->
         <div class="row">
             <?php
-                // código para ligar à BD e mostrar informação dinâmica
-            $link = new_db_connection(); // Create a new DB connection
-
             $stmt = mysqli_stmt_init($link); // create a prepared statement
-
             $query = "SELECT id_filmes, capa, titulo, tipo FROM filmes INNER JOIN generos ON ref_generos = id_generos";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
@@ -32,7 +27,7 @@
                             <h4 class='text-uppercase m-0 mt-2'>{$titulo}</h4>
                             <hr class='my-3 mx-auto' />
                             <div class='tipo-filme mb-0 small text-black-50'>{$tipo}</div>
-                            <a href='http://localhost/miniprojeto/filme_detail.php?id= {$id_filmes}' class='mt-2 btn btn-outline-primary'><b><i class='fas fa-plus text-primary''></i></b>+</a>
+                            <a href='filme_detail.php?id= {$id_filmes}' class='mt-2 btn btn-outline-primary'><b><i class='fas fa-plus text-primary''></i></b>+</a>
                         </div>
                     </div>
                 </div>";

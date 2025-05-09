@@ -17,8 +17,6 @@ $link = new_db_connection();
 
 
             <?php
-            $link = new_db_connection();
-
             $stmt = mysqli_stmt_init($link);
             $query = "SELECT id_generos, tipo FROM generos";
 

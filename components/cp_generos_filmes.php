@@ -1,5 +1,11 @@
+<?php
+    require_once "./connections/connections.php";
+    $link = new_db_connection();
+?>
+
+
 <section class="sec-filmes pb-5" id="lista-filmes">
-    <div class="container px-lg-5 pt-5"> <!-- alterado de pt-3 para pt-5 para dar espaço abaixo da navbar -->
+    <div class="container px-lg-5 pt-5">
         <div class="row">
 
             <?php
@@ -36,9 +42,6 @@
 
 
             <?php
-            require_once "./connections/connections.php";
-            $link = new_db_connection();
-
             $id_generos = $_GET['id'];
             $stmt = mysqli_stmt_init($link);
             $query = "SELECT id_filmes, capa, titulo, tipo FROM filmes INNER JOIN generos ON id_generos = ref_generos WHERE id_generos = ?";

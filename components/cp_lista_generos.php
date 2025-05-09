@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once "./connections/connections.php";
 require_once "./scripts/sc_error_feedback.php";
 $link = new_db_connection();
@@ -17,12 +20,6 @@ $link = new_db_connection();
 
 
             <?php
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-
-            $link = new_db_connection();
-
             $stmt = mysqli_stmt_init($link);
             $query = "SELECT id_generos, tipo FROM generos";
 

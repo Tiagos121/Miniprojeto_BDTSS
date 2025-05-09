@@ -1,7 +1,10 @@
 <!-- Ligação BD -->
 <?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     require_once "./connections/connections.php";
-    $link = new_db_connection();;
+    $link = new_db_connection();
 ?>
 
 <section class="sec-filmes pb-5" id="lista-filmes">
@@ -52,9 +55,9 @@
                         <a class='d-block btn btn-primary mt-4' href='{url_trailer}' target='_blank'>Trailer</a> 
                         <a class='d-block btn btn-outline-primary mt-4' href='{url_imdb}' target='_blank'>IMDb</a>
                         ";
-                if (isset($_SESSION['role'])) {
-                    echo "<a class='d-block btn btn-primary mt-4' href='{url_favorito}' target='_blank'>Remover Favorito</a>";
-                }
+                    if (isset($_SESSION["id"])) {
+                        echo "<a class='d-block btn btn-primary mt-4' href='{url_favorito}' target='_blank'>Remover Favorito</a>";
+                    }
 
                     echo "</div> 
                 </div>";

@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once "./connections/connections.php";
 $link = new_db_connection();
 ?>
