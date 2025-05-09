@@ -6,9 +6,7 @@ $link = new_db_connection();
 ?>
 
 <?php
-if (isset($_GET["msg"])) {
-    error_feedbsck($_GET["msg"]);
-}
+
 if (isset($_GET["id"])) {
     $id_genero = $_GET["id"];
 
@@ -47,13 +45,25 @@ if (isset($_GET["id"])) {
             <form class="col-6" action="scripts/generos/sc_update_genero.php" method="post">
                 <div class="mb-3 mt-3">
                     <label for="genero" class="form-label">Editar género:</label>
+
+                    <?php
+                    // Mostrar feedback AQUI
+                    require_once "scripts/sc_error_feedback.php";
+                    if (isset($_GET["msg"])) {
+                        error_feedback($_GET["msg"]);
+                    }
+                    ?>
+
                     <input type="text" class="form-control" id="genero"
                            value="<?= htmlspecialchars($tipo) ?>" name="genero"
                            required>
                 </div>
+
                 <input type="hidden" name="id_genero" value="<?= $id_genero ?>">
                 <button type="submit" class="btn btn-primary">Guardar alterações</button>
             </form>
         </div>
     </div>
 </section>
+
+
