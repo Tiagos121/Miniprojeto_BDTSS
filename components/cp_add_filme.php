@@ -13,7 +13,7 @@
             error_feedback($_GET["msg"]);
         }
         ?>
-        <form class="col-6 was-validated" action="../scripts/filmes/sc_add_filme.php"
+        <form class="col-6 was-validated" action="scripts/filmes/sc_add_filme.php"
               method="post" enctype="multipart/form-data">
             <div class="mb-3 mt-3">
                 <label for="uname" class="form-label">Título:*</label>

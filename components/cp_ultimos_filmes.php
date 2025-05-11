@@ -39,7 +39,7 @@
                             <h4 class='text-uppercase m-0 mt-2'>{$titulo}</h4>
                             <hr class='my-3 mx-auto' />
                             <div class='tipo-filme mb-0 small text-black-50'>{$tipo}</div>
-                            <a href='http://localhost/miniprojeto/filme_detail.php?id= {$id_filmes}' class='mt-2 btn btn-outline-primary'><b><i class='fas fa-plus text-primary''></i></b>+</a>
+                            <a href='filme_detail.php?id={$id_filmes}' class='mt-2 btn btn-outline-primary'><b><i class='fas fa-plus text-primary''></i></b>+</a>
                         </div>
                     </div>
                 </div>";
