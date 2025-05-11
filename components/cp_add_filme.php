@@ -1,12 +1,15 @@
 <section class="sec-filmes pb-5" id="lista-filmes">
     <div class="container px-lg-5 pt-0">
         <?php
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         include_once "components/cp_intro_add_filme.php";
         require_once "./scripts/sc_error_feedback.php";
         $link = new_db_connection();
         ?>
-        <form class="col-6" action="scripts/filmes/sc_add_filme.php"
-              method="post" class="was-validated">
+        <form class="col-6 was-validated" action="scripts/filmes/sc_add_filme.php"
+              method="post" enctype="multipart/form-data">
             <div class="mb-3 mt-3">
                 <label for="uname" class="form-label">Título:*</label>
                 <input type="text" class="form-control" id="titulo" value=""
@@ -30,10 +33,29 @@
                 <div class="invalid-feedback">Please fill out this field.</div>
             </div>
             <div class="mb-3 mt-3">
-                <label for="uname" class="form-label">Género:</label>
+                <label for="genero" class="form-label">Género:</label>
                 <select class="form-select" id="genero" name="genero" required>
                     <option value="">Escolha um género</option>
-                    <option value="x">Género X</option>
+                    <?php
+                    require_once "./connections/connections.php";
+                    $link = new_db_connection();
+
+                    $stmt = mysqli_stmt_init($link);
+                    $query = "SELECT id_generos, tipo FROM generos ORDER BY tipo";
+
+                    if (mysqli_stmt_prepare($stmt, $query)) {
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_bind_result($stmt, $id_genero, $tipo);
+
+                        while (mysqli_stmt_fetch($stmt)) {
+                            echo "<option value='$id_genero'>$tipo</option>";
+                        }
+
+                        mysqli_stmt_close($stmt);
+                    }
+
+                    mysqli_close($link);
+                    ?>
                 </select>
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
@@ -52,7 +74,35 @@
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
             </div>
+            <!-- Capa do filme -->
+            <div class="col-12 mb-3">
+                <label for="capa" class="form-label">Capa do Filme (jpg/png):</label>
+                <input type="file"
+                       class="form-control"
+                       id="capa"
+                       name="capa"
+                       accept="image/jpeg,image/png">
+                <div class="invalid-feedback">
+                    Por favor, envie uma imagem (jpg ou png).
+                </div>
+            </div>
+
+            <!-- Preview simples (fica à direita se usares colunas) -->
+            <div class="col-12 mb-3 text-center">
+                <img id="preview" src="" alt="Preview" style="max-width:200px; display:none; border:1px solid #ccc; padding:4px;">
+            </div>
             <button type="submit" class="btn btn-primary">Inserir</button>
         </form>
     </div>
 </section>
+
+
+<!-- Script JS para mostrar o preview -->
+<script>
+    document.getElementById('capa').addEventListener('change', function(e) {
+        const file = e.target.files[0], img = document.getElementById('preview');
+        if (!file) return img.style.display = 'none';
+        img.src = URL.createObjectURL(file);
+        img.style.display = 'block';
+    });
+</script>

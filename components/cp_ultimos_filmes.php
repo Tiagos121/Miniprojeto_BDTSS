@@ -34,7 +34,7 @@
                             while (mysqli_stmt_fetch($stmt)) {
                                 echo "<div class='col-md-4 mb-md-0 pb-5'>
                     <div class='card pb-2 h-100 shadow rounded'>
-                        <div class='capas-preview' style='background-image: url(\"imgs/capas/$capa\");'></div>
+                        <div class='capas-preview' style='background-image: url(\"{$capa}\");'></div>
                             <div class='card-body text-center'>
                             <h4 class='text-uppercase m-0 mt-2'>{$titulo}</h4>
                             <hr class='my-3 mx-auto' />

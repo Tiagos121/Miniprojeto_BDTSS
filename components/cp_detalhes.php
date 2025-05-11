@@ -10,8 +10,6 @@
 <section class="sec-filmes pb-5" id="lista-filmes">
     <div class="container px-lg-5 pt-3">
     <?php
-    // Código para ligar à BD e mostrar informação dinâmica
-    $link = new_db_connection(); // Create a new DB connection
 
     $stmt = mysqli_stmt_init($link); // create a prepared statement
 
@@ -22,7 +20,7 @@
 
     $id_filme = $_GET['id'];
 
-    $query = "SELECT id_filmes, titulo, capa, tipo, ano, sinopse FROM filmes INNER JOIN generos ON ref_generos = id_generos WHERE id_filmes = ?";
+    $query = "SELECT id_filmes, titulo, capa, tipo, ano, sinopse, url_trailer, url_imdb FROM filmes INNER JOIN generos ON ref_generos = id_generos WHERE id_filmes = ?";
 
 
         if (mysqli_stmt_prepare($stmt, $query)) {
@@ -35,13 +33,13 @@
                 echo "<div class='alert-warning p-4'>O filme que procura não existe!</div>";
                 echo " <a class='btn btn-info' href='filmes.php'>Voltar</a>";
             } else {
-                mysqli_stmt_bind_result($stmt, $id_filmes,$titulo, $capa, $tipo, $ano, $sinopse);
+                mysqli_stmt_bind_result($stmt, $id_filmes,$titulo, $capa, $tipo, $ano, $sinopse, $url_trailer, $url_imdb );
                 while (mysqli_stmt_fetch($stmt)) {
                 echo " <a class='btn btn-info' href='filmes.php'>Voltar</a>";
                 echo "<h1 class='pt-5 pb-3'>{$titulo}</h1> 
                 <div class='row d-flex flex-row justify-content-between'> 
                     <div class='col detalhes'> 
-                        <img class='img-fluid mb-3' src=\"imgs/capas/$capa\" /> 
+                        <img class='img-fluid mb-3' src='{$capa}' alt='Capa do filme' /> 
                     </div> 
                     <div class='col detalhes'> 
                         <h4 class='text-primary'><span class='text-black-50'>{$ano}</span> | {$tipo}</h4> 
@@ -52,8 +50,8 @@
                                     <p class='tipo-filme mb-0'>{$sinopse}</p> 
                                 </div> 
                         </div> 
-                        <a class='d-block btn btn-primary mt-4' href='{url_trailer}' target='_blank'>Trailer</a> 
-                        <a class='d-block btn btn-outline-primary mt-4' href='{url_imdb}' target='_blank'>IMDb</a>
+                        <a class='d-block btn btn-primary mt-4' href='{$url_trailer}' target='_blank'>Trailer</a> 
+                        <a class='d-block btn btn-outline-primary mt-4' href='{$url_imdb}' target='_blank'>IMDb</a>
                         ";
                     // Código para favoritos
                     if (isset($_SESSION["id"])) {
