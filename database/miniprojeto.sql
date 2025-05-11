@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Maio-2025 às 04:23
+-- Tempo de geração: 11-Maio-2025 às 18:06
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -71,7 +71,8 @@ INSERT INTO `filmes` (`id_filmes`, `titulo`, `ano`, `sinopse`, `capa`, `url_imdb
 (10, 'Apur Sansar', '1959', 'Liberated from any form of attachment that was holding him back from immersing himself into Kolkata\'s urban lifestyle after Sarbojaya\'s death in O Invicto (1956), Apu, now an optimistic, 23-year-old idealist and struggling author, has no other choice but to give up his degree for lack of financial resources. Being no longer accountable to anyone, Apu barely manages to scrape by, content with a meagre income and a humble roof over his head, until an unforeseen complication during the wedding of Aparna, the delicate sister of his university friend, Pulu, leads to an act of kindness and a wonderful, youthful romance. All his life, death, and the sense of loss, have been accompanying Apu in his perpetual odyssey of spirituality and knowledge; now, a lifetime of joys, hopes, sadness, and tragedies culminate in the most momentous decision of his life. But, life\'s mysterious duality cannot be defined by tragedy. What more could one ask for than a child\'s charming, wide-eyed smile?', 'imgs/capas/filme_10.jpg', 'https://m.imdb.com/title/tt0052572/?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=690bec67-3bd7-45a1-9ab4-4f274a72e602&pf_rd_r=GWD6Z6F24JJ7SNNQGHD9&pf_rd_s=center-4&pf_rd_t=60601&pf_rd_i=india.top-rated-indian-movies&ref_=m_fea_india_ss_toprated_tt_10', 'https://m.imdb.com/video/vi3114774553/?playlistId=tt0052572&ref_=tt_pr_ov_vi', 4, '2023-03-19 19:03:57', 1),
 (18, 'Testar filme 2', '2005', 'Testar filme', 'imgs/capas/capa_681fff14d63a26.08265550.png', NULL, NULL, 23, '2025-05-11 02:36:20', 6),
 (19, 'Parabatata', '2018', 'parabatata é um bom filme', 'imgs/capas/capa_6820022a681707.92312721.png', NULL, NULL, 3, '2025-05-11 02:49:30', 6),
-(20, 'Gaiolas Artesanais', '2025', 'O mestre dj8 cr8 está em busca das suas gaiolas', 'imgs/capas/capa_682006199ce792.65559371.png', 'https://youtu.be/6A-LHGBwmWQ?si=Pwxplg0lk8hoFshL', 'https://youtu.be/1I7rG_pOiUw?si=0PRuCMcbdvGD_Tyh', 7, '2025-05-11 03:06:17', 6);
+(20, 'Gaiolas Artesanais', '2025', 'O mestre dj8 cr8 está em busca das suas gaiolas', 'imgs/capas/capa_682006199ce792.65559371.png', 'https://youtu.be/6A-LHGBwmWQ?si=Pwxplg0lk8hoFshL', 'https://youtu.be/1I7rG_pOiUw?si=0PRuCMcbdvGD_Tyh', 7, '2025-05-11 03:06:17', 6),
+(21, 'Testar script', '2005', 'asas', 'imgs/capas/capa_6820c8cfea5ba3.03517664.png', NULL, NULL, 8, '2025-05-11 16:57:03', 6);
 
 -- --------------------------------------------------------
 
@@ -198,7 +199,6 @@ ALTER TABLE `comentarios`
 --
 ALTER TABLE `filmes`
   ADD PRIMARY KEY (`id_filmes`),
-  ADD UNIQUE KEY `capa_UNIQUE` (`capa`),
   ADD KEY `fk_filmes_generos1_idx` (`ref_generos`),
   ADD KEY `fk_filmes_utilizadores1_idx` (`ref_utilizadores`);
 
@@ -254,7 +254,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de tabela `filmes`
 --
 ALTER TABLE `filmes`
-  MODIFY `id_filmes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_filmes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `generos`

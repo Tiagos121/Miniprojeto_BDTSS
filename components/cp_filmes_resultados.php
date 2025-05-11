@@ -45,7 +45,7 @@ $link = new_db_connection();
                     // Se nenhum filme foi encontrado, exibe mensagem
                     if (!$resultados) {
                         echo "<div class='alert-warning p-4'>Nenhum filme corresponde à sua pesquisa.</div> 
-                                <a class='btn btn-info mt-4 col-2' href='http://localhost/miniprojeto/filmes.php'>Voltar</a>";
+                                <a class='btn btn-info mt-4 col-2' href='filmes.php'>Voltar</a>";
                     }
 
                     mysqli_stmt_close($stmt);

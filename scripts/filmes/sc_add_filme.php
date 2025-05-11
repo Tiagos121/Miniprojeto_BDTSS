@@ -7,11 +7,12 @@ $link = new_db_connection();
 ?>
 
 <?php
-if (!isset($_SESSION["id"])) {
-    header("Location: ../../login.php?msg=erro_sessao");
-    exit();
-}
-$id_utilizador = $_SESSION["id"];
+    // Vericar Sessão
+    if (!isset($_SESSION["id"])) {
+        header("Location: ../../login.php?msg=erro_sessao");
+        exit();
+    }
+    $id_utilizador = $_SESSION["id"];
 
 if (isset($_POST["titulo"], $_POST["sinopse"], $_POST["ano"], $_POST["genero"], $_POST["url_imdb"], $_POST["url_trailer"])) {
     $titulo = $_POST['titulo'];

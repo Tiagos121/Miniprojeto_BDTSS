@@ -24,8 +24,8 @@ session_start(); // TEM DE estar no topo
                 <li class="nav-item"><a class="nav-link" href="filmes.php">Filmes</a></li>
                 <li class="nav-item"><a class="nav-link" href="generos.php">Géneros</a></li>
                 <?php
-                    if (isset($_SESSION["role"]) && $_SESSION["role"] == "1") {
-                        echo "<li class='nav-item'><a class='nav-link' href='add_filme.php'>Inserir filme</a></li>";
+                    if (isset($_SESSION["id"])) {
+                        echo "<li class='nav-item'><a class='nav-link' href='gerir_filmes.php'>Gerir Filmes</a></li>";
                     }
                 ?>
 

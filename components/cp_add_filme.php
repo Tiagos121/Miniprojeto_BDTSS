@@ -4,11 +4,16 @@
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        include_once "components/cp_intro_add_filme.php";
-        require_once "./scripts/sc_error_feedback.php";
-        $link = new_db_connection();
+        include_once "cp_intro_add_filme.php"; // sobe 1 nível e entra em components
         ?>
-        <form class="col-6 was-validated" action="scripts/filmes/sc_add_filme.php"
+        <?php
+        // Mostrar feedback AQUI
+        require_once "scripts/sc_error_feedback.php";
+        if (isset($_GET["msg"])) {
+            error_feedback($_GET["msg"]);
+        }
+        ?>
+        <form class="col-6 was-validated" action="../scripts/filmes/sc_add_filme.php"
               method="post" enctype="multipart/form-data">
             <div class="mb-3 mt-3">
                 <label for="uname" class="form-label">Título:*</label>

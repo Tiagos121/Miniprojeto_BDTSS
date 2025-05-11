@@ -53,6 +53,10 @@
                         <a class='d-block btn btn-primary mt-4' href='{$url_trailer}' target='_blank'>Trailer</a> 
                         <a class='d-block btn btn-outline-primary mt-4' href='{$url_imdb}' target='_blank'>IMDb</a>
                         ";
+                    // Editar filme (Filme Update)
+                    if (isset($_SESSION['id']) && $_SESSION['role'] == "1") {
+                        echo "<a class='d-block btn btn-warning mt-4' href='update_filme.php?id= {$id_filmes}'>Editar Filme</a>";
+                    }
                     // Código para favoritos
                     if (isset($_SESSION["id"])) {
                         $id_user = $_SESSION["id"];
