@@ -3,7 +3,7 @@ require_once "../connections/connections.php";
 $link =new_db_connection();
 ?>
 <?php
-    if (isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password"])) {
+    if (isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["login"]) && isset($_POST["password"])) {
         $username = $_POST['username'];
         $email = $_POST['email'];
         $login = $_POST['login'];
