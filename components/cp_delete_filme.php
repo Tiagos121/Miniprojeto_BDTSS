@@ -44,8 +44,6 @@ $link = new_db_connection();
 
 <section class="sec-filmes pb-5" id="lista-filmes">
     <div class="container pt-3">
-        <!-- Intro -->
-
         <!-- Formulário para apagar filmes selecionados -->
         <form action="scripts/filmes/sc_delete_filme.php" method="post">
             <div class="row">
