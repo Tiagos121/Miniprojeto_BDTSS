@@ -4,7 +4,7 @@
 <!-- Navigation-->
 <?php include_once "./components/cp_navbar.php" ?>
 
-<!-- Filmes -->
+<!-- Filmes Favoritos -->
 <?php include_once "./components/cp_filmes_favoritos.php" ?>
 
 <!-- Rodapé -->

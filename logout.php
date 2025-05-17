@@ -1,10 +1,10 @@
 <!-- Head -->
 <?php include_once "./components/cp_head.php" ?>
 
-<!-- Navigation-->
+<!-- Navigation -->
 <?php include_once "./components/cp_navbar.php" ?>
 
-<!-- Filmes -->
+<!-- Logout -->
 <?php include_once "./components/cp_logout.php" ?>
 
 <!-- Rodapé -->

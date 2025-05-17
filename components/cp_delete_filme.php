@@ -10,6 +10,7 @@ $link = new_db_connection();
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.21.0/dist/sweetalert2.all.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.21.0/dist/sweetalert2.min.css" rel="stylesheet">
 
+<!--Css para cards com overlay-->
 <style>
     .filme-card {
         cursor: pointer;
@@ -86,6 +87,7 @@ $link = new_db_connection();
     </div>
 </section>
 
+<!--Scripts para Checkbox mais Sweetalert-->
 <script>
     document.querySelectorAll(".filme-card").forEach(card => {
         card.addEventListener("click", () => {

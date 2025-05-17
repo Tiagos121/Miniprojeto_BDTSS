@@ -33,14 +33,14 @@ function error_feedback($code) {
         case "erro_query":
             echo "<div class='alert alert-danger mt-3'>Erro ao atualizar o género na base de dados.</div>";
             break;
-        case "erro_prepare":
-            echo "<div class='alert alert-danger mt-3'>Erro ao preparar a query.</div>";
-            break;
         case "erro_dados":
             echo "<div class='alert alert-danger mt-3'>Erro: dados em falta no pedido.</div>";
             break;
         case "registo_sucesso":
             echo "<script>alert('Registo efetuado com sucesso!');</script>";
+            break;
+        case "filme_inserido":
+            echo "<script>alert('Filme inserido com sucesso!');</script>";
             break;
         case "utilizador_existente":
             echo "<div class='alert alert-warning'>Já existe um utilizador com esse login ou email.</div>";
@@ -49,7 +49,10 @@ function error_feedback($code) {
             echo "<p class='alert alert-warning mt-3'>Não foi possível terminar o registo. Verifica os teus dados e volta a tentar.</p>";
             break;
         case "erro_prepare":
-            echo "<p class='alert alert-warning mt-3'>Erro ao preparar o pedido. Tenta novamente mais tarde.</p>";
+            echo "<p class='alert alert-danger mt-3'>Erro ao preparar o pedido. Tenta novamente mais tarde.</p>";
+            break;
+        case "erro_execucao":
+            echo "<p class='alert alert-danger mt-3'>Erro ao executar pedido.</p>";
             break;
         case "login_errado":
             echo "<p class='alert alert-warning mt-3'>Os dados de acesso não estão corretos. Volta a tentar.</p>";
@@ -65,6 +68,15 @@ function error_feedback($code) {
             break;
         case "login_incompleto":
             echo "<p class='alert alert-warning mt-3'>Preenche todos os campos antes de continuar.</p>";
+            break;
+        case "ficheiro_grande":
+            echo "<p class='alert alert-warning mt-3'>Ficheiro com tamanho superior a 2MB</p>";
+            break;
+        case "mime_incorreto":
+            echo "<p class='alert alert-warning mt-3'>Só é permitido inserir ficheiros jpg ou png!</p>";
+            break;
+        case "id_invalido":
+            echo "<p class='alert alert-warning mt-3'>Id inválido!</p>";
             break;
         default:
             echo "<div class='alert alert-info mt-3'>Ocorreu uma mensagem não reconhecida.</div>";

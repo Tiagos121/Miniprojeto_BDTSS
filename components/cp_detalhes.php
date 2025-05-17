@@ -11,15 +11,13 @@
     <div class="container px-lg-5 pt-3">
     <?php
 
-    $stmt = mysqli_stmt_init($link); // create a prepared statement
-
     if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
         header("Location: filmes.php");
         exit;
     }
-
     $id_filme = $_GET['id'];
 
+    $stmt = mysqli_stmt_init($link);
     $query = "SELECT id_filmes, titulo, capa, tipo, ano, sinopse, url_trailer, url_imdb FROM filmes INNER JOIN generos ON ref_generos = id_generos WHERE id_filmes = ?";
 
 
@@ -27,7 +25,7 @@
             mysqli_stmt_bind_param($stmt, "i", $id_filme);
             mysqli_stmt_execute($stmt);
 
-            mysqli_stmt_store_result($stmt); // Armazena os resultados para verificar se há registros
+            mysqli_stmt_store_result($stmt);
 
             if (mysqli_stmt_num_rows($stmt) == 0) {
                 echo "<div class='alert-warning p-4'>O filme que procura não existe!</div>";

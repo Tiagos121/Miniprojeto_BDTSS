@@ -12,7 +12,7 @@ $link =new_db_connection();
         // Cria a password hash
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        // Verificar se o login ou email já existem
+        // Query para verificar se o login ou email já existem
         $check_stmt = mysqli_stmt_init($link);
         $check_query = "SELECT id_utilizadores FROM utilizadores WHERE login = ? OR email = ?";
 
@@ -36,7 +36,10 @@ $link =new_db_connection();
             exit();
         }
 
+        // Verificar manualmente as operações
         mysqli_report(MYSQLI_REPORT_OFF);
+
+        //Query para guardar dados de utilizador criado
         $stmt = mysqli_stmt_init($link);
         $query = "INSERT INTO utilizadores (nome, email, login, password_hash) VALUES (?,?,?,?)";
 
@@ -47,11 +50,11 @@ $link =new_db_connection();
                 // Iniciar sessão automaticamente após registo
                 session_start();
 
-                $_SESSION["username"] = $username;
-                $_SESSION["role"] = 2; // ou outro valor se tiveres perfis
-                $_SESSION["id"] = mysqli_insert_id($link);
+                $_SESSION["username"] = $username; // Username atribuido
+                $_SESSION["role"] = 2; // Cargo padrão atribuido
+                $_SESSION["id"] = mysqli_insert_id($link); // Logar automaticamente o utilizador
 
-                // Redirecionar para a homepage com msg de sucesso
+
                 header("Location: ../index.php?msg=registo_sucesso");
                 exit();
             } else {

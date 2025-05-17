@@ -5,8 +5,8 @@
 
             <div class="col-8">
                 <p class="text-black-60 text-left pb-4">
-                    <a href="./scripts/sc_logout.php">Confirmar</a>
-                    <a href="./index.php">Voltar</a>
+                    <a class='btn btn-primary mt-4' href="./scripts/sc_logout.php">Confirmar</a>
+                    <a class='btn btn-info mt-4' href="./index.php">Voltar</a>
                 </p>
             </div>
 </section>

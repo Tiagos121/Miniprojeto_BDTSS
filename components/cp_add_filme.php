@@ -1,12 +1,15 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once "./connections/connections.php";
+$link = new_db_connection();
+?>
+
 <section class="sec-filmes pb-5" id="lista-filmes">
     <div class="container px-lg-5 pt-0">
         <?php
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        include_once "cp_intro_add_filme.php"; // sobe 1 nível e entra em components
-        ?>
-        <?php
+        include_once "cp_intro_add_filme.php";
         // Mostrar feedback AQUI
         require_once "scripts/sc_error_feedback.php";
         if (isset($_GET["msg"])) {
@@ -42,8 +45,6 @@
                 <select class="form-select" id="genero" name="genero" required>
                     <option value="">Escolha um género</option>
                     <?php
-                    require_once "./connections/connections.php";
-                    $link = new_db_connection();
 
                     $stmt = mysqli_stmt_init($link);
                     $query = "SELECT id_generos, tipo FROM generos ORDER BY tipo";
@@ -92,7 +93,7 @@
                 </div>
             </div>
 
-            <!-- Preview simples (fica à direita se usares colunas) -->
+            <!-- Preview da capa-->
             <div class="col-12 mb-3 text-center">
                 <img id="preview" src="" alt="Preview" style="max-width:200px; display:none; border:1px solid #ccc; padding:4px;">
             </div>

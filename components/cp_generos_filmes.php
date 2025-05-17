@@ -9,7 +9,7 @@
         <div class="row">
 
             <?php
-
+            //Mudar titulo e descrição dinamicamente
 
             $titulo_genero = "Géneros";
             $descricao = "Os géneros de filmes indianos que temos para ti.<br />Escolhe um!";

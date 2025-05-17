@@ -27,9 +27,19 @@
     $ano = $_POST['ano'];
     $genero_id = (int) $_POST["genero"];
 
-    // Campos opcionais
-    $url_imdb = !empty($_POST['url_imdb']) ? $_POST['url_imdb'] : null;
-    $url_trailer = !empty($_POST['url_trailer']) ? $_POST['url_trailer'] : null;
+
+    // Tratar campos opcionais (URL'S)
+    if (!empty($_POST['url_imdb'])) {
+        $url_imdb = $_POST['url_imdb'];
+    } else {
+        $url_imdb = null;
+    }
+
+    if (!empty($_POST['url_trailer'])) {
+        $url_trailer = $_POST['url_trailer'];
+    } else {
+        $url_trailer = null;
+    }
 
     // Obter capa atual (caso o utilizador não envie nova imagem)
     $link = new_db_connection();
@@ -49,32 +59,62 @@
     }
     mysqli_stmt_close($stmt);
 
+
     // Por defeito mantém a capa atual
     $capa = $capa_atual;
 
-    // Processar nova capa (se enviada)
+    // Verificar o foi enviada uma capa e dar update
     if (isset($_FILES['capa']) && $_FILES['capa']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = __DIR__ . '/../../imgs/capas/';
+        $upload_dir = __DIR__ . '/../../imgs/capas/'; // Define o diretorio onde guarda a capa
+
+        //verifica se existe diretorio, senão ele cria um novo com o mesmo caminho
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0755, true);
         }
 
-        $ext = pathinfo($_FILES['capa']['name'], PATHINFO_EXTENSION);
-        $filename = uniqid('capa_', true) . '.' . $ext;
-        $dest = $upload_dir . $filename;
+        // Validar tamanho ficheiro (2MB)
+        if ($_FILES['capa']['size'] > 2 * 1024 * 1024) {
+            header("Location: ../../add_filme.php?msg=ficheiro_grande");
+            exit();
+        }
 
+        // Validar MIME real
+        $finfo = new finfo(FILEINFO_MIME_TYPE);  // Dizer que quero só o mime puro
+        $mime  = $finfo->file($_FILES['capa']['tmp_name']); // Análise do ficheiro
+
+        //Define extensões permitidas e aplica-as
+        $allowed = [
+            'image/jpeg' => 'jpg',
+            'image/png'  => 'png',
+        ];
+        // Verificar se o mime é igual à extensão indicada
+        if (!isset($allowed[$mime])) {
+            header("Location: ../../add_filme.php?msg=mime_incorreto");
+            exit();
+        }
+
+        // Depois das validações
+        $ext = pathinfo($_FILES['capa']['name'], PATHINFO_EXTENSION); // Obter extensão do ficheiro eniviado
+        $filename = uniqid('capa_', true) . '.' . $ext; // Gerar nome unico para o ficheiro mais extensão
+        $dest = $upload_dir . $filename; // destino completo do diretorio com a capa
+
+        // Move upload temporario para o destino completo
         if (move_uploaded_file($_FILES['capa']['tmp_name'], $dest)) {
+
             // Apagar a capa antiga, se não for a default
             if ($capa_atual !== 'imgs/default.png') {
+                // Buscar o diretorio
                 $caminho_capa_antiga = __DIR__ . '/../../' . $capa_atual;
                 if (file_exists($caminho_capa_antiga)) {
+                    // Apagar capa antiga
                     unlink($caminho_capa_antiga);
                 }
             }
-
+            // Definir a capa nova
             $capa = 'imgs/capas/' . $filename;
         }
     }
+
 
     // Atualizar os dados
     $stmt_update = mysqli_stmt_init($link);

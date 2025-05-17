@@ -14,6 +14,7 @@ $link = new_db_connection();
     }
     $id_utilizador = $_SESSION["id"];
 
+
 if (isset($_POST["titulo"], $_POST["sinopse"], $_POST["ano"], $_POST["genero"], $_POST["url_imdb"], $_POST["url_trailer"])) {
     $titulo = $_POST['titulo'];
     $sinopse = $_POST['sinopse'];
@@ -50,17 +51,37 @@ if (isset($_POST["titulo"], $_POST["sinopse"], $_POST["ano"], $_POST["genero"], 
     $capa = 'imgs/default.png';
 
     if (isset($_FILES['capa']) && $_FILES['capa']['error'] === UPLOAD_ERR_OK) {
+
+        // Validar tamanho ficheiro (2MB)
+        if ($_FILES['capa']['size'] > 2 * 1024 * 1024) {
+            header("Location: ../../add_filme.php?msg=ficheiro_grande");
+            exit();
+        }
+
+        // Validar MIME real
+        $finfo = new finfo(FILEINFO_MIME_TYPE);  // Dizer que quero só o mime puro
+        $mime  = $finfo->file($_FILES['capa']['tmp_name']); // Análise do ficheiro
+
+        //Define extensões permitidas e aplica-as
+        $allowed = [
+            'image/jpeg' => 'jpg',
+            'image/png'  => 'png',
+        ];
+        // Verificar se o mime é igual à extensão indicada
+        if (!isset($allowed[$mime])) {
+            header("Location: ../../add_filme.php?msg=mime_incorreto");
+            exit();
+        }
+
+        //Depois das validações
         $ext = pathinfo($_FILES['capa']['name'], PATHINFO_EXTENSION);
         $filename = uniqid('capa_', true) . '.' . $ext;
         $dest = $upload_dir . $filename;
 
         if (move_uploaded_file($_FILES['capa']['tmp_name'], $dest)) {
-            // Atenção ao caminho que o frontend precisa usar:
-            // se as tuas páginas usam <img src="/imgs/capas/...">:
             $capa = 'imgs/capas/' . $filename;
         } else {
             error_log("Falha a mover capa: " . print_r($_FILES['capa'], true));
-            // Mantém default
         }
     }
     // Fim do upload capa
@@ -77,7 +98,7 @@ if (isset($_POST["titulo"], $_POST["sinopse"], $_POST["ano"], $_POST["genero"], 
 
         if (mysqli_stmt_execute($stmt_insert)) {
             // Sucesso
-            header("Location: ../../filmes.php?msg=filme_adicionado");
+            header("Location: ../../filmes.php?msg=filme_inserido");
         } else {
             // Erro na execução
             header("Location: ../../add_filme.php?msg=erro_execucao");
@@ -91,6 +112,6 @@ if (isset($_POST["titulo"], $_POST["sinopse"], $_POST["ano"], $_POST["genero"], 
 
     mysqli_close($link);
 } else {
-    header("Location: ../../add_filme.php?msg=campos_em_falta");
+    header("Location: ../../add_filme.php?msg=erro_dados");
 }
 ?>

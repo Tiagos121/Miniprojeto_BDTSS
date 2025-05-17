@@ -1,11 +1,9 @@
 <?php
-// código para ligar à BD e mostrar informação dinâmica
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once "./connections/connections.php";
 $link = new_db_connection();
-?>
-
-<?php
-session_start(); // TEM DE estar no topo
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow" id="mainNav">

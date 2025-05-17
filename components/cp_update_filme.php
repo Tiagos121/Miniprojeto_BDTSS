@@ -1,22 +1,22 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require_once "./connections/connections.php";
+$link = new_db_connection();
+?>
+
 <section class="sec-filmes pb-5" id="lista-filmes">
     <div class="container px-lg-5 pt-0">
         <?php
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-
         include_once "cp_intro_add_filme.php";
-        require_once "./connections/connections.php";
 
-        // Verifica se o ID do filme está na URL
         if (!isset($_GET["id"])) {
             echo "<div class='alert alert-danger'>ID do filme não foi fornecido.</div>";
             exit;
         }
-
         $id_filme = intval($_GET["id"]);
 
-        $link = new_db_connection();
         $stmt = mysqli_stmt_init($link);
         $query = "SELECT titulo, sinopse, ano, ref_generos, url_imdb, url_trailer, capa FROM filmes WHERE id_filmes = ?";
 
@@ -58,14 +58,16 @@
                     <option value="">Escolha um género</option>
                     <?php
                     $link = new_db_connection();
-                    $stmt = mysqli_stmt_init($link);
-                    $query = "SELECT id_generos, tipo FROM generos ORDER BY tipo";
+                    
+                    $stmt_genero = mysqli_stmt_init($link);
+                    $query_genero = "SELECT id_generos, tipo FROM generos ORDER BY tipo";
 
-                    mysqli_stmt_prepare($stmt, $query);
-                    mysqli_stmt_execute($stmt);
-                    mysqli_stmt_bind_result($stmt, $id_genero, $tipo);
+                    mysqli_stmt_prepare($stmt_genero, $query_genero);
+                    mysqli_stmt_execute($stmt_genero);
+                    mysqli_stmt_bind_result($stmt_genero, $id_genero, $tipo);
 
-                    while (mysqli_stmt_fetch($stmt)) {
+                    while (mysqli_stmt_fetch($stmt_genero)) {
+                        //Verificar se o gênero atual no dropdown é igual ao que está selecionado.
                         if ($genero == $id_genero) {
                             echo "<option value='$id_genero' selected>$tipo</option>";
                         } else {
@@ -73,7 +75,7 @@
                         }
                     }
 
-                    mysqli_stmt_close($stmt);
+                    mysqli_stmt_close($stmt_genero);
                     mysqli_close($link);
                     ?>
                 </select>
@@ -97,6 +99,7 @@
             <!-- Mostra a capa atual -->
             <div class="mb-3 text-center">
                 <?php
+                //verificar se já existe capa ou não
                 if ($capa != "") {
                     echo "<p>Capa atual:</p>";
                     echo "<img id='preview' src='{$capa}' alt='Capa atual' style='max-width:200px; border:1px solid #ccc; padding:4px;'>";

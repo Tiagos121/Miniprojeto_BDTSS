@@ -4,7 +4,7 @@
 <!-- Navigation-->
 <?php include_once "./components/cp_navbar.php" ?>
 
-<!-- Filmes -->
+<!-- Update Generos -->
 <?php include_once "./components/cp_update_genero.php" ?>
 
 <!-- Rodapé -->

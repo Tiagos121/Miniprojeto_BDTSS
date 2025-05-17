@@ -7,14 +7,14 @@
 ?>
 
 <?php
-    // 1. Verificar se está autenticado e se o id do filme foi passado corretamente
+    //SESSION para user e GET para filme
     if (!isset($_SESSION['id']) || !isset($_GET['id']) || !is_numeric($_GET['id'])) {
         header("Location: ../../login.php");
         exit();
     }
 
     $id_user  = $_SESSION['id'];
-    $id_filme = (int) $_GET['id'];
+    $id_filme = $_GET['id'];
 
     $stmt = mysqli_stmt_init($link);
     $query_check = "SELECT 1 FROM filmes_favoritos WHERE ref_utilizadores = ? AND ref_filmes = ?";
@@ -24,12 +24,11 @@
         mysqli_stmt_store_result($stmt);
 
         if (mysqli_stmt_num_rows($stmt) > 0) {
-            // 3. Se existir, apagar
+            //Fecha o stmt anterior e inicia um novo
             mysqli_stmt_close($stmt);
 
             $stmt = mysqli_stmt_init($link);
             $query_delete = "DELETE FROM filmes_favoritos WHERE ref_utilizadores = ? AND ref_filmes = ?";
-
             if (mysqli_stmt_prepare($stmt, $query_delete)) {
                 mysqli_stmt_bind_param($stmt, "ii", $id_user, $id_filme);
                 mysqli_stmt_execute($stmt);

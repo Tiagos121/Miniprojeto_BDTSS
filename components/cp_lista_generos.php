@@ -13,7 +13,7 @@ $link = new_db_connection();
 
 
 <section class="sec-filmes pb-5" id="lista-filmes">
-    <div class="container px-lg-5 pt-5"> <!-- alterado de pt-3 para pt-5 para dar espaço abaixo da navbar -->
+    <div class="container px-lg-5 pt-5">
         <div class="row">
 
                     <h1>Géneros</h1>
@@ -64,6 +64,7 @@ $link = new_db_connection();
     </div>
 </section>
 
+<!--Sweet alert-->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const deletes = document.querySelectorAll('.delite-genero');

@@ -7,7 +7,6 @@ $link = new_db_connection();
 ?>
 
 <?php
-
 if (isset($_GET["id"])) {
     $id_genero = $_GET["id"];
 

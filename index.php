@@ -7,7 +7,7 @@
 <!-- Header -->
 <?php include_once "./components/cp_header.php" ?>
 
-<!-- Filmes -->
+<!-- Ultimos Filmes -->
 <?php include_once "./components/cp_ultimos_filmes.php" ?>
 
 <!-- Rodapé -->

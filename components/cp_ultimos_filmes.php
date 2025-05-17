@@ -1,3 +1,9 @@
+<?php
+// código para ligar à BD e mostrar informação dinâmica
+require_once "./connections/connections.php";
+$link = new_db_connection();
+?>
+
 <section class="sec-filmes pb-5 mt-5" id="filmes">
     <div class="container px-lg-5 pt-3">
         <!-- Intro -->
@@ -5,12 +11,6 @@
 
         <!-- Listar três filmes mais recentes -->
         <div class="row">
-            <?php
-            // código para ligar à BD e mostrar informação dinâmica
-                require_once "./connections/connections.php";
-                $link = new_db_connection();
-            ?>
-
             <section class="sec-filmes pb-5" id="lista-filmes">
                 <div class="container px-lg-5 pt-3">
                     <!-- Intro -->
@@ -21,11 +21,8 @@
                     <!-- Listar filmes -->
                     <div class="row">
                         <?php
-                        // código para ligar à BD e mostrar informação dinâmica
-                        $link = new_db_connection(); // Create a new DB connection
 
                         $stmt = mysqli_stmt_init($link); // create a prepared statement
-
                         $query = "SELECT id_filmes, capa, titulo, tipo FROM filmes INNER JOIN generos ON ref_generos = id_generos ORDER BY filmes.ano DESC LIMIT 3";
 
                         if (mysqli_stmt_prepare($stmt, $query)) {
