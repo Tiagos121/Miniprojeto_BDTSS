@@ -14,7 +14,7 @@
         <div class="row">
             <?php
             $stmt = mysqli_stmt_init($link); // create a prepared statement
-            $query = "SELECT id_filmes, capa, titulo, tipo FROM filmes INNER JOIN generos ON ref_generos = id_generos";
+            $query = "SELECT id_filmes, capa, titulo, tipo FROM filmes INNER JOIN generos ON ref_generos = id_generos ORDER BY filmes.ano DESC";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
                 mysqli_stmt_execute($stmt);

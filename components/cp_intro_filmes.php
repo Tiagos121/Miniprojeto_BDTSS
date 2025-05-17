@@ -10,7 +10,7 @@
     </div>
 
     <!-- Input de pesquisa -->
-    <form class="col-4" action="filmes_resultados.php" method="post">
+    <form class="col-4" action="filmes.php" method="post">
         <div class="row">
             <div class="col-9">
                 <input class="form-control" id="pesquisa" name="pesquisa" type="text" placeholder="Pesquisa" aria-label="Pesquisa" />

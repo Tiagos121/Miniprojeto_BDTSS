@@ -6,15 +6,15 @@
     require_once "./connections/connections.php";
     $link = new_db_connection();
 ?>
-
+<?php
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    header("Location: filmes.php");
+    exit;
+}
+?>
 <section class="sec-filmes pb-5" id="lista-filmes">
     <div class="container px-lg-5 pt-3">
     <?php
-
-    if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-        header("Location: filmes.php");
-        exit;
-    }
     $id_filme = $_GET['id'];
 
     $stmt = mysqli_stmt_init($link);
