@@ -84,7 +84,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
                                 </form>";
                         }
                     } else {
-                        echo "<p class='text-muted'>Faz login para comentar este filme.</p>";
+                        echo "<a class='btn btn-black mt-4' href='login.php'>Faz login para comentar este filme</a>";
                     }
 
                     echo "</div></div>";
@@ -98,6 +98,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
         ?>
 
         <?php
+            //Visualização dos comentários
             include_once "cp_comentarios.php";
         ?>
 

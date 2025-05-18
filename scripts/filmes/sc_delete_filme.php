@@ -52,16 +52,16 @@ if (isset($_POST["filmes"]) && is_array($_POST["filmes"])) {
         mysqli_stmt_close($stmt_delete);
         mysqli_close($link);
 
-        header("Location: ../../delete_filme.php?msg=6");
+        header("Location: ../../delete_filme.php?");
         exit();
     } else {
         mysqli_close($link);
-        header("Location: ../../delete_filme.php?msg=3");
+        header("Location: ../../delete_filme.php?msg=erro_prepare");
         exit();
     }
 
 } else {
-    header("Location: ../../delete_filme.php?msg=3");
+    header("Location: ../../delete_filme.php?msg=erro_dados");
     exit();
 }
 ?>

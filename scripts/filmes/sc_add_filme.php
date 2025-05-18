@@ -98,7 +98,7 @@ if (isset($_POST["titulo"], $_POST["sinopse"], $_POST["ano"], $_POST["genero"], 
 
         if (mysqli_stmt_execute($stmt_insert)) {
             // Sucesso
-            header("Location: ../../filmes.php?msg=filme_inserido");
+            header("Location: ../../filmes.php?");
         } else {
             // Erro na execução
             header("Location: ../../add_filme.php?msg=erro_execucao");
