@@ -9,12 +9,12 @@ $link = new_db_connection();
 <?php
 if (isset($_POST["filmes"]) && is_array($_POST["filmes"])) {
 
-    //Stmt's para select capa e delete filmes
+    //Query para select
     $stmt_select = mysqli_stmt_init($link);
-    $stmt_delete = mysqli_stmt_init($link);
-
-    //Querys's para select capa e delete filmes
     $query_select = "SELECT capa FROM filmes WHERE id_filmes = ?";
+
+    //Query para delete
+    $stmt_delete = mysqli_stmt_init($link);
     $query_delete = "DELETE FROM filmes WHERE id_filmes = ?";
 
     if (mysqli_stmt_prepare($stmt_select, $query_select) && mysqli_stmt_prepare($stmt_delete, $query_delete)) {
