@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17-Maio-2025 às 05:06
+-- Tempo de geração: 19-Maio-2025 às 17:53
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -34,6 +34,15 @@ CREATE TABLE `comentarios` (
   `ref_filmes` int(11) NOT NULL,
   `ref_utilizadores` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `comentarios`
+--
+
+INSERT INTO `comentarios` (`id_comentarios`, `comentario`, `data_insercao`, `ref_filmes`, `ref_utilizadores`) VALUES
+(2, 'Bom, filme, gostei!', '2025-05-18 03:32:28', 28, 6),
+(4, 'Grande nelo chapeiro! Grande Homem!', '2025-05-18 03:33:47', 28, 3),
+(5, 'Mestre em grande performance!', '2025-05-18 15:55:21', 20, 3);
 
 -- --------------------------------------------------------
 
@@ -91,6 +100,7 @@ CREATE TABLE `filmes_favoritos` (
 INSERT INTO `filmes_favoritos` (`ref_utilizadores`, `ref_filmes`, `data_insercao`) VALUES
 (3, 6, '2025-05-09 19:12:26'),
 (3, 20, '2025-05-11 19:50:14'),
+(3, 28, '2025-05-18 03:33:14'),
 (6, 2, '2025-05-09 19:13:44'),
 (6, 8, '2025-05-11 19:37:00'),
 (6, 20, '2025-05-11 19:12:35'),
@@ -251,7 +261,7 @@ ALTER TABLE `utilizadores`
 -- AUTO_INCREMENT de tabela `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentarios` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comentarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `filmes`
