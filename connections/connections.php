@@ -1,7 +1,7 @@
 <?php
 function new_db_connection()
 {
-    $env = "localhost";
+    $env = "";
     // Variables for the database connection
     if ($env == "localhost") {
         $hostname = 'localhost';
@@ -10,8 +10,8 @@ function new_db_connection()
         $dbname = "miniprojeto";
     } else {
         $hostname = 'labmm.clients.ua.pt';
-        $username = "deca_25_BDTSS_34";
-        $password = "KogQ3ATE";
+        $username = "deca_25_BDTSS_34_web";
+        $password = "10FM9500";
         $dbname = "deca_25_BDTSS_34";
     }
 
