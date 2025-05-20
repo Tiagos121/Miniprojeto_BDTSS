@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17-Maio-2025 às 05:06
+-- Tempo de geração: 19-Maio-2025 às 13:44
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -34,6 +34,13 @@ CREATE TABLE `comentarios` (
   `ref_filmes` int(11) NOT NULL,
   `ref_utilizadores` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `comentarios`
+--
+
+INSERT INTO `comentarios` (`id_comentarios`, `comentario`, `data_insercao`, `ref_filmes`, `ref_utilizadores`) VALUES
+(1, 'Grande nelo chapeiro!!!', '2025-05-19 11:14:40', 28, 6);
 
 -- --------------------------------------------------------
 
@@ -137,7 +144,8 @@ INSERT INTO `generos` (`id_generos`, `tipo`, `data_insercao`) VALUES
 (9, 'Aventura', '2023-03-19 19:03:57'),
 (10, 'Crime', '2023-03-19 19:03:57'),
 (23, 'Cartoon', '2025-05-08 19:18:43'),
-(30, 'Bebedeira', '2025-05-12 00:20:10');
+(30, 'Bebedeira', '2025-05-12 00:20:10'),
+(31, 'Cultibo', '2025-05-13 10:04:18');
 
 -- --------------------------------------------------------
 
@@ -251,13 +259,13 @@ ALTER TABLE `utilizadores`
 -- AUTO_INCREMENT de tabela `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentarios` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comentarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `filmes`
 --
 ALTER TABLE `filmes`
-  MODIFY `id_filmes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_filmes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de tabela `generos`
@@ -275,7 +283,7 @@ ALTER TABLE `perfis`
 -- AUTO_INCREMENT de tabela `utilizadores`
 --
 ALTER TABLE `utilizadores`
-  MODIFY `id_utilizadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_utilizadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restrições para despejos de tabelas
